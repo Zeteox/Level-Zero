@@ -15,7 +15,7 @@ public abstract class Weapon extends AbstractItem {
     protected DefenseStrategy defenseStrategy;
     
     // Weapon constructor with parameter validation
-    public Weapon(String name, String type, int price) {
+    public Weapon(String name, String type, int price, AttackStrategy attackStrategy, DefenseStrategy defenseStrategy) {
         super(name, price);
         
         if (type == null || type.trim().isEmpty()) {
@@ -23,13 +23,6 @@ public abstract class Weapon extends AbstractItem {
         }
         
         this.type = type;
-        this.attackStrategy = null;
-        this.defenseStrategy = null;
-    }
-    
-    // Weapon constructor with strategies
-    public Weapon(String name, String type, int price, AttackStrategy attackStrategy, DefenseStrategy defenseStrategy) {
-        this(name, type, price);
         this.attackStrategy = attackStrategy;
         this.defenseStrategy = defenseStrategy;
     }

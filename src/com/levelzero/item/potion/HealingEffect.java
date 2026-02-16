@@ -16,7 +16,7 @@ public class HealingEffect implements PotionEffect {
     
     @Override
     public void apply(LivingCreature target) {
-        // TODO  Effect will be implemented when LivingCreature is implemented. 
+        target.healHp(healAmount);
     }
     
     @Override

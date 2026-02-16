@@ -1,6 +1,7 @@
 package com.levelzero.item.weapon;
 
 import com.levelzero.creature.attack.AttackStrategy;
+import com.levelzero.creature.attack.MagicAttackStrategy;
 import com.levelzero.creature.defense.DefenseStrategy;
 
 // Represents a magic staff dealing magic damage
@@ -11,7 +12,7 @@ public class Staff extends Weapon {
     
     // Staff constructor with damage validation
     public Staff(String name, int damage, int price) {
-        super(name, "Staff", price);
+        super(name, "Staff", price, new MagicAttackStrategy(), null);
         
         if (damage < 0) {
             throw new IllegalArgumentException("Damage cannot be negative");
