@@ -25,7 +25,7 @@ public class Sword extends Weapon {
     
     // Swords provide no defence
     @Override
-    public int getDefence() {
+    public int getDefense() {
         return 0;
     }
     
