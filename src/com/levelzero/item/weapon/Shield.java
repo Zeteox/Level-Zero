@@ -1,5 +1,8 @@
 package com.levelzero.item.weapon;
 
+import com.levelzero.creature.attack.AttackStrategy;
+import com.levelzero.creature.defense.DefenseStrategy;
+
 // Represents a shield providing defensive protection
 public class Shield extends Weapon {
     
@@ -9,6 +12,17 @@ public class Shield extends Weapon {
     // Shield constructor with defence validation
     public Shield(String name, int defence, int price) {
         super(name, "Shield", price);
+        
+        if (defence < 0) {
+            throw new IllegalArgumentException("Defence cannot be negative");
+        }
+        
+        this.defence = defence;
+    }
+    
+    // Shield constructor with strategies
+    public Shield(String name, int defence, int price, AttackStrategy attackStrategy, DefenseStrategy defenseStrategy) {
+        super(name, "Shield", price, attackStrategy, defenseStrategy);
         
         if (defence < 0) {
             throw new IllegalArgumentException("Defence cannot be negative");

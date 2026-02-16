@@ -1,5 +1,8 @@
 package com.levelzero.item.weapon;
 
+import com.levelzero.creature.attack.AttackStrategy;
+import com.levelzero.creature.defense.DefenseStrategy;
+
 // Represents a sword, an offensive weapon dealing physical damage
 public class Sword extends Weapon {
     
@@ -9,6 +12,17 @@ public class Sword extends Weapon {
     // Sword constructor with damage validation
     public Sword(String name, int damage, int price) {
         super(name, "Sword", price);
+        
+        if (damage < 0) {
+            throw new IllegalArgumentException("Damage cannot be negative");
+        }
+        
+        this.damage = damage;
+    }
+    
+    // Sword constructor with strategies
+    public Sword(String name, int damage, int price, AttackStrategy attackStrategy, DefenseStrategy defenseStrategy) {
+        super(name, "Sword", price, attackStrategy, defenseStrategy);
         
         if (damage < 0) {
             throw new IllegalArgumentException("Damage cannot be negative");
