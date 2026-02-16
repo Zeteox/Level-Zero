@@ -3,12 +3,14 @@ package com.levelzero.creature.hero;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Iterator;
+import java.util.Optional;
 import com.levelzero.item.Item;
 import com.levelzero.item.potion.Potion;
 import com.levelzero.item.weapon.Weapon;
 
 // Manages player inventory with limited space for potions and weapons
-public class Inventory {
+public class Inventory implements Iterable<Item> {
     
     // Maximum number of items the inventory can hold
     private final int capacity;
@@ -72,6 +74,31 @@ public class Inventory {
         return removeItem(weapon);
     }
     
+    // Returns item by index
+    public Optional<Item> getItem(int index) {
+        if (index < 0 || index >= items.size()) {
+            return Optional.empty();
+        }
+        return Optional.of(items.get(index));
+    }
+    
+    // Returns first item by name
+    public Optional<Item> getItemByName(String name) {
+        if (name == null) {
+            return Optional.empty();
+        }
+        return items.stream()
+            .filter(item -> item.getName().equalsIgnoreCase(name))
+            .findFirst();
+    }
+    
+    // Returns all items matching a predicate (supports search by type, price range, etc)
+    public List<Item> findItems(java.util.function.Predicate<Item> predicate) {
+        return items.stream()
+            .filter(predicate)
+            .toList();
+    }
+    
     // Returns the current number of items in the inventory
     public int getCurrentSize() {
         return items.size();
@@ -114,6 +141,12 @@ public class Inventory {
         return capacity;
     }
     
+    // Iterator pattern: allows iteration over items
+    @Override
+    public Iterator<Item> iterator() {
+        return Collections.unmodifiableList(items).iterator();
+    }
+    
     // Returns a formatted string representation of the inventory contents
     @Override
     public String toString() {
@@ -123,8 +156,10 @@ public class Inventory {
         if (items.isEmpty()) {
             sb.append("Empty inventory\n");
         } else {
+            int index = 0;
             for (Item item : items) {
-                sb.append("  - ").append(item.getDescription()).append(" - Price: ").append(item.getPrice()).append("\n");
+                sb.append(index).append(". ").append(item.getDescription()).append(" - Price: ").append(item.getPrice()).append("\n");
+                index++;
             }
         }
         
