@@ -23,7 +23,7 @@ public abstract class Weapon extends AbstractItem {
     public abstract int getDamage();
     
     // Returns the weapon defence
-    public abstract int getDefence();
+    public abstract int getDefense();
     
     // Returns the weapon type
     public String getType() {
@@ -33,7 +33,7 @@ public abstract class Weapon extends AbstractItem {
     // Returns the weapon statistics as a formatted string
     public String getStats() {
         return String.format("Weapon: %s, Type: %s, Price: %d, Damage: %d, Defence: %d",
-                name, type, price, getDamage(), getDefence());
+                name, type, price, getDamage(), getDefense());
     }
     
     @Override
