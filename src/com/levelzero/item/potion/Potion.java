@@ -1,4 +1,4 @@
-package com.levelzero.item;
+package com.levelzero.item.potion;
 
 // Represents a healing potion
 public class Potion {
