@@ -16,18 +16,19 @@ public abstract class LivingCreature {
     protected DefenseStrategy defenseStrategy;
 
     public LivingCreature(String name, int maxHp, int gold, int baseDamage, int baseDefense, AttackStrategy attackStrategy, HealStrategy healStrategy, DefenseStrategy defenseStrategy) {
+        if (name == null || name.isEmpty()) throw new IllegalArgumentException("Name cannot be empty");
         if (maxHp <= 0) throw new IllegalArgumentException("Max HP must be positive");
         if (gold < 0) throw new IllegalArgumentException("Gold cannot be negative");
 
         this.name = name;
-        this.maxHp = maxHp;
-        this.hp = maxHp;
-        this.gold = gold;
         this.baseDamage = baseDamage;
         this.baseDefense = baseDefense;
-        this.attackStrategy = attackStrategy;
-        this.healStrategy = healStrategy;
-        this.defenseStrategy = defenseStrategy;
+        setMaxHp(maxHp);
+        setHp(maxHp);
+        setGold(gold);
+        setAttackStrategy(attackStrategy);
+        setHealStrategy(healStrategy);
+        setDefenseStrategy(defenseStrategy);
     }
 
     public String getName() {
@@ -59,21 +60,47 @@ public abstract class LivingCreature {
     }
 
     public void setMaxHp(int maxHp) {
+        if (maxHp <= 0) {
+            throw new IllegalArgumentException("Max HP must be strictly positive.");
+        }
         this.maxHp = maxHp;
+
+        if (this.hp > this.maxHp) {
+            this.hp = this.maxHp;
+        }
     }
     public void setHp(int hp) {
-        this.hp = hp;
+        if (hp < 0) {
+            this.hp = 0;
+        } else if (hp > this.maxHp) {
+            this.hp = this.maxHp;
+        } else {
+            this.hp = hp;
+        }
     }
     public void setGold(int gold) {
-        this.gold = gold;
+        if (gold < 0) {
+            this.gold = 0;
+        } else {
+            this.gold = gold;
+        }
     }
     public void setAttackStrategy(AttackStrategy attackStrategy) {
+        if (attackStrategy == null) {
+            throw new IllegalArgumentException("Attack strategy cannot be null");
+        }
         this.attackStrategy = attackStrategy;
     }
     public void setHealStrategy(HealStrategy healStrategy) {
+        if (healStrategy == null) {
+            throw new IllegalArgumentException("Heal strategy cannot be null");
+        }
         this.healStrategy = healStrategy;
     }
     public void setDefenseStrategy(DefenseStrategy defenseStrategy) {
+        if (defenseStrategy == null) {
+            throw new IllegalArgumentException("Defense strategy cannot be null");
+        }
         this.defenseStrategy = defenseStrategy;
     }
 
@@ -93,23 +120,11 @@ public abstract class LivingCreature {
             throw new IllegalStateException("Defense strategy not set");
         }
         int damageTaken = defenseStrategy.defend(damage, this);
-        if (damageTaken > 0) {
-            if (this.hp - damageTaken <= 0) {
-                this.hp = 0;
-            } else {
-                this.hp -= damageTaken;
-            }
-        }
+        setHp(this.hp - damageTaken);
     }
 
     public void removeMagicHp(int damage) {
-        if (damage > 0) {
-            if (this.hp - damage <= 0) {
-                this.hp = 0;
-            } else {
-                this.hp -= damage;
-            }
-        }
+        setHp(this.hp - damage);
     }
 
     public void healHp(int heal) {
