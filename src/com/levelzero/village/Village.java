@@ -3,6 +3,7 @@ package com.levelzero.village;
 import com.levelzero.village.building.Building;
 import com.levelzero.village.building.Hostel;
 import com.levelzero.village.building.Merchant;
+import com.levelzero.village.building.Mine;
 
 import java.util.ArrayList;
 
@@ -68,15 +69,15 @@ public class Village {
         return merchantBuildings;
     }
 
-//    public ArrayList<Building> getMineBuildings() {
-//        ArrayList<Building> mineBuildings = new ArrayList<>();
-//        if (buildings != null) {
-//            for (Building building : buildings) {
-//                if (building instanceof Mine) {
-//                    mineBuildings.add(building);
-//                }
-//            }
-//        }
-//        return mineBuildings;
-//    }
+    public ArrayList<Building> getMineBuildings() {
+        ArrayList<Building> mineBuildings = new ArrayList<>();
+        if (buildings != null) {
+            for (Building building : buildings) {
+                if (building instanceof Mine) {
+                    mineBuildings.add(building);
+                }
+            }
+        }
+        return mineBuildings;
+    }
 }
