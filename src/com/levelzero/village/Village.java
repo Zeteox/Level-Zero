@@ -18,9 +18,9 @@ public class Village {
     }
 
     private void generateVillage(int level) {
-        this.buildings.add(BuildingFactory.createBuilding(BuildingType.MERCHANT, level));
-        this.buildings.add(BuildingFactory.createBuilding(BuildingType.HOSTEL,level));
-        this.buildings.add(BuildingFactory.createBuilding(BuildingType.MINE,level));
+        this.addBuilding(BuildingFactory.createBuilding(BuildingType.MERCHANT, level));
+        this.addBuilding(BuildingFactory.createBuilding(BuildingType.HOSTEL,level));
+        this.addBuilding(BuildingFactory.createBuilding(BuildingType.MINE,level));
     }
 
     public String getName() {
