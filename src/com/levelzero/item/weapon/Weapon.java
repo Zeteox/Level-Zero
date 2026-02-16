@@ -6,7 +6,7 @@ import com.levelzero.item.AbstractItem;
 public abstract class Weapon extends AbstractItem {
     
     // Weapon type (e.g., "Sword", "Shield", "Staff")
-    protected final String type;
+    private final String type;
     
     // Weapon constructor with parameter validation
     public Weapon(String name, String type, int price) {
