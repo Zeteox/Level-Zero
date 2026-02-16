@@ -1,10 +1,5 @@
 package com.levelzero.item.weapon;
 
-import com.levelzero.models.Weapon;
-import com.levelzero.models.Shield;
-import com.levelzero.models.Sword;
-import com.levelzero.models.Staff;
-
 // Factory to create different weapons in the game
 public class WeaponFactory {
     
@@ -34,8 +29,8 @@ public class WeaponFactory {
     }
     
     // Creates a shield with the specified attributes
-    public static Shield createShield(String name, int defence, int price) {
-        return new Shield(name, defence, price);
+    public static Shield createShield(String name, int defense, int price) {
+        return new Shield(name, defense, price);
     }
     
     // Creates a sword with the specified attributes
