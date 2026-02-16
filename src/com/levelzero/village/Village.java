@@ -1,9 +1,6 @@
 package com.levelzero.village;
 
-import com.levelzero.village.building.Building;
-import com.levelzero.village.building.Hostel;
-import com.levelzero.village.building.Merchant;
-import com.levelzero.village.building.Mine;
+import com.levelzero.village.building.*;
 
 import java.util.ArrayList;
 
@@ -12,11 +9,18 @@ public class Village {
      * The Village class represents a village in the game. It contains a hostel, a merchant and a mine.
      */
     private final String name;
-    private int BuildingNumber;
     private ArrayList<Building> buildings;
 
     public Village(String name) {
         this.name = name;
+        this.buildings = new ArrayList<>();
+        this.generateVillage();
+    }
+
+    private void generateVillage() {
+        this.buildings.add(BuildingFactory.createBuilding(BuildingType.MERCHANT,1));
+        this.buildings.add(BuildingFactory.createBuilding(BuildingType.HOSTEL,1));
+        this.buildings.add(BuildingFactory.createBuilding(BuildingType.MINE,1));
     }
 
     public String getName() {
@@ -24,7 +28,7 @@ public class Village {
     }
 
     public int getBuildingNumber() {
-        return BuildingNumber;
+        return this.buildings.size();
     }
 
     public void addBuilding(Building building) {
@@ -32,12 +36,11 @@ public class Village {
             buildings = new ArrayList<>();
         }
         buildings.add(building);
-        BuildingNumber++;
     }
 
     public void removeBuilding(Building building) {
-        if (buildings != null && buildings.remove(building)) {
-            BuildingNumber--;
+        if (buildings != null) {
+            buildings.remove(building);
         }
     }
 
