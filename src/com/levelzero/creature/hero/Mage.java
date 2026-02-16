@@ -22,6 +22,11 @@ public class Mage extends Hero implements CanDodge {
     }
 
     @Override
+    public int getDamage() {
+        return (super.getDamage() + 10);
+    }
+
+    @Override
     public String getStats() {
         String staffName = (getMainHand() != null) ? getMainHand().getName() : "None";
 

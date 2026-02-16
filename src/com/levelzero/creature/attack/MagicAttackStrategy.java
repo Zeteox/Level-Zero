@@ -19,7 +19,7 @@ public class MagicAttackStrategy implements AttackStrategy {
                 return target.getName() + " dodged the attack!";
             }
         }
-        target.removeHp(attacker.getDamage() + 10);
-        return attacker.getName() + " attacked " + target.getName() + " for " + attacker.getDamage() + 10 + " damage.";
+        target.removeMagicHp(attacker.getDamage());
+        return attacker.getName() + " attacked " + target.getName() + " for " + (attacker.getDamage()) + " damage.";
     }
 }
