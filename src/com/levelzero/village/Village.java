@@ -11,16 +11,16 @@ public class Village {
     private final String name;
     private ArrayList<Building> buildings;
 
-    public Village(String name) {
+    public Village(String name, int level) {
         this.name = name;
         this.buildings = new ArrayList<>();
-        this.generateVillage();
+        this.generateVillage(level);
     }
 
-    private void generateVillage() {
-        this.buildings.add(BuildingFactory.createBuilding(BuildingType.MERCHANT,1));
-        this.buildings.add(BuildingFactory.createBuilding(BuildingType.HOSTEL,1));
-        this.buildings.add(BuildingFactory.createBuilding(BuildingType.MINE,1));
+    private void generateVillage(int level) {
+        this.buildings.add(BuildingFactory.createBuilding(BuildingType.MERCHANT, level));
+        this.buildings.add(BuildingFactory.createBuilding(BuildingType.HOSTEL,level));
+        this.buildings.add(BuildingFactory.createBuilding(BuildingType.MINE,level));
     }
 
     public String getName() {
