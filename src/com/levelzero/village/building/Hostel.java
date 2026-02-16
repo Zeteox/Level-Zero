@@ -1,5 +1,7 @@
 package com.levelzero.village.building;
 
+import com.levelzero.creature.LivingCreature;
+
 public class Hostel implements Building {
     private final int price;
 
@@ -18,7 +20,7 @@ public class Hostel implements Building {
         return (int) (Math.random() * 10) + 10;
     }
 
-//    public void heal(LivingCreature target) {
-//        target.healHp(target.getMaxHp());
-//    }
+    public void heal(LivingCreature target) {
+        target.healHp(target.getMaxHp());
+    }
 }
