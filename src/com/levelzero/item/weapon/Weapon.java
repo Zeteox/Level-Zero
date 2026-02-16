@@ -28,14 +28,14 @@ public abstract class Weapon {
     // Returns the weapon statistics as a formatted string
     public String getStats() {
         return String.format("Weapon: %s, Type: %s, Price: %d, Damage: %d, Defence: %d",
-                name, type, price, getDamage(), getDefence());
+                name, type, price, getDamage(), getDefense());
     }
     
     // Returns the weapon damage
     public abstract int getDamage();
     
     // Returns the weapon defence
-    public abstract int getDefence();
+    public abstract int getDefense();
     
     // Returns the weapon name
     public String getName() {

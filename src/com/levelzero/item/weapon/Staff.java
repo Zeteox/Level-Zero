@@ -25,7 +25,7 @@ public class Staff extends Weapon {
     
     // Staves provide no defence
     @Override
-    public int getDefence() {
+    public int getDefense() {
         return 0;
     }
     

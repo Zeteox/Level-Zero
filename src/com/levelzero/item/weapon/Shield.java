@@ -25,7 +25,7 @@ public class Shield extends Weapon {
     
     // Returns the defence provided by the shield
     @Override
-    public int getDefence() {
+    public int getDefense() {
         return defence;
     }
     
