@@ -78,11 +78,11 @@ public abstract class LivingCreature {
         return this.hp > 0;
     }
 
-    public void attack(LivingCreature target) {
+    public String attack(LivingCreature target) {
         if (attackStrategy == null) {
             throw new IllegalStateException("Attack strategy not set");
         }
-        attackStrategy.attack(this, target);
+        return attackStrategy.attack(this, target);
     }
 
     public void removeHp(int damage) {

@@ -3,7 +3,8 @@ package com.levelzero.creature.attack;
 import com.levelzero.creature.LivingCreature;
 import com.levelzero.creature.hero.CanDodge;
 
-public class SimpleAttackStrategy implements AttackStrategy {
+public class MagicAttackStrategy implements AttackStrategy {
+
     @Override
     public String attack(LivingCreature attacker, LivingCreature target) {
         if (!attacker.isAlive()) {
@@ -18,7 +19,7 @@ public class SimpleAttackStrategy implements AttackStrategy {
                 return target.getName() + " dodged the attack!";
             }
         }
-        target.removeHp(attacker.getDamage());
-        return attacker.getName() + " attacked " + target.getName() + " for " + attacker.getDamage() + " damage.";
+        target.removeHp(attacker.getDamage() + 10);
+        return attacker.getName() + " attacked " + target.getName() + " for " + attacker.getDamage() + 10 + " damage.";
     }
 }
