@@ -4,7 +4,7 @@ import com.levelzero.creature.attack.AttackStrategy;
 import com.levelzero.creature.defense.DefenseStrategy;
 import com.levelzero.creature.heal.HealStrategy;
 import com.levelzero.creature.LivingCreature;
-import com.levelzero.item.Potion;
+import com.levelzero.item.potion.Potion;
 import com.levelzero.item.weapon.Shield;
 import com.levelzero.item.weapon.Weapon;
 
@@ -13,8 +13,8 @@ public abstract class Hero extends LivingCreature {
     protected Weapon mainHand;
     protected Weapon offHand;
 
-    public Hero(String name, int maxHp, int gold, int damage, int defence, AttackStrategy attackStrategy, HealStrategy healStrategy, DefenseStrategy defenseStrategy, int space) {
-        super(name, maxHp, gold, damage, defence, attackStrategy, healStrategy, defenseStrategy);
+    public Hero(String name, int maxHp, int gold, int damage, int defense, AttackStrategy attackStrategy, HealStrategy healStrategy, DefenseStrategy defenseStrategy, int space) {
+        super(name, maxHp, gold, damage, defense, attackStrategy, healStrategy, defenseStrategy);
         this.inventory = new Inventory(space);
         this.mainHand = null;
         this.offHand = null;
@@ -34,7 +34,7 @@ public abstract class Hero extends LivingCreature {
         return offHand;
     }
 
-    public String equipOffHand(Weapon weapon) {
+    private String equipOffHand(Weapon weapon) {
         String message;
         if (offHand == null) {
             message = String.format("%s has equipped %s in off-hand.", getName(), weapon.getName());
@@ -45,11 +45,11 @@ public abstract class Hero extends LivingCreature {
 
         this.offHand = weapon;
         inventory.removeWeapon(weapon);
-        //setDefenseStrategy(weapon.getDefenseStrategy);
+        setDefenseStrategy(weapon.getDefenseStrategy());
         return message;
     }
 
-    public String equipMainHand(Weapon weapon) {
+    private String equipMainHand(Weapon weapon) {
         String message;
         if (mainHand == null) {
             message = String.format("%s has equipped %s in main-hand.", getName(), weapon.getName());
@@ -60,12 +60,12 @@ public abstract class Hero extends LivingCreature {
 
         this.mainHand = weapon;
         inventory.removeWeapon(weapon);
-        //setAttackStrategy(weapon.getAttackStrategy);
+        setAttackStrategy(weapon.getAttackStrategy());
         return message;
     }
 
     public String equip(Weapon weapon) {
-        if (!inventory.getWeapons().contains(weapon)) {
+        if (!inventory.contains(weapon)) {
             return String.format("%s does not have %s in inventory.", getName(), weapon.getName());
         }
 
@@ -85,11 +85,11 @@ public abstract class Hero extends LivingCreature {
             throw new IllegalArgumentException("Potion cannot be null");
         }
 
-        if (!inventory.getPotions().contains(potion)) {
+        if (!inventory.contains(potion)) {
             throw new IllegalArgumentException(String.format("%s does not have %s in inventory.", getName(), potion.getName()));
         }
 
-        healHp(potion.getHp());
+        potion.use(this);
         inventory.removePotion(potion);
     }
 
@@ -107,13 +107,13 @@ public abstract class Hero extends LivingCreature {
 
     @Override
     public int getDefense() {
-        int totalDefence = super.getDefense();
+        int totalDefense = super.getDefense();
         if (mainHand != null) {
-            totalDefence += mainHand.getDefence();
+            totalDefense += mainHand.getDefense();
         }
         if (offHand != null) {
-            totalDefence += offHand.getDefence();
+            totalDefense += offHand.getDefense();
         }
-        return totalDefence;
+        return totalDefense;
     }
 }
