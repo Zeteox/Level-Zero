@@ -140,6 +140,10 @@ public class Inventory implements Iterable<Item> {
     public int getCapacity() {
         return capacity;
     }
+
+    public boolean contains(Item item) {
+        return items.contains(item);
+    }
     
     // Iterator pattern: allows iteration over items
     @Override

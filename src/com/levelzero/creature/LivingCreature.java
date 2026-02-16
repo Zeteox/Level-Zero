@@ -16,6 +16,9 @@ public abstract class LivingCreature {
     protected DefenseStrategy defenseStrategy;
 
     public LivingCreature(String name, int maxHp, int gold, int baseDamage, int baseDefense, AttackStrategy attackStrategy, HealStrategy healStrategy, DefenseStrategy defenseStrategy) {
+        if (maxHp <= 0) throw new IllegalArgumentException("Max HP must be positive");
+        if (gold < 0) throw new IllegalArgumentException("Gold cannot be negative");
+
         this.name = name;
         this.maxHp = maxHp;
         this.hp = maxHp;
@@ -87,7 +90,7 @@ public abstract class LivingCreature {
 
     public void removeHp(int damage) {
         if (defenseStrategy == null) {
-            throw new IllegalStateException("Attack strategy not set");
+            throw new IllegalStateException("Defense strategy not set");
         }
         int damageTaken = defenseStrategy.defend(damage, this);
         if (damageTaken > 0) {
@@ -95,6 +98,16 @@ public abstract class LivingCreature {
                 this.hp = 0;
             } else {
                 this.hp -= damageTaken;
+            }
+        }
+    }
+
+    public void removeMagicHp(int damage) {
+        if (damage > 0) {
+            if (this.hp - damage <= 0) {
+                this.hp = 0;
+            } else {
+                this.hp -= damage;
             }
         }
     }
