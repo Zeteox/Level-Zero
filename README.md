@@ -38,11 +38,14 @@ java Main
 
 ```
 src/
+│── gradle/
 │── com/levelzero/
 │   ├── Main.java
 │   ├── creature/
 │   ├── item/
 │   ├── village/
+│   ├── utils/
+│   ├── cli/
 │   └── ...
 │── LICENSE
 │── README.md
@@ -64,17 +67,17 @@ This project is licensed under the MIT License.
 ## Collaborators
 
 <a href="https://github.com/Zeteox">
-<img src="https://avatars.githubusercontent.com/u/61639325?v=4" width="150" style="border-radius: 50%;" />
+<img src="https://avatars.githubusercontent.com/u/61639325?v=4" width="100" style="border-radius: 50%;" />
 </a>
 
 <a href="https://github.com/Oiha-dev">
-<img src="https://avatars.githubusercontent.com/u/115953539?v=4" width="150" style="border-radius: 50%;" />
+<img src="https://avatars.githubusercontent.com/u/115953539?v=4" width="100" style="border-radius: 50%;" />
 </a>
 
 <a href="https://github.com/zoom26042604">
-<img src="https://avatars.githubusercontent.com/u/186803356?v=4" width="150" style="border-radius: 50%;" />
+<img src="https://avatars.githubusercontent.com/u/186803356?v=4" width="100" style="border-radius: 50%;" />
 </a>
 
 <a href="https://github.com/Torolgo">
-<img src="https://avatars.githubusercontent.com/u/190293274?v=4" width="150" style="border-radius: 50%;" />
+<img src="https://avatars.githubusercontent.com/u/190293274?v=4" width="100" style="border-radius: 50%;" />
 </a>
