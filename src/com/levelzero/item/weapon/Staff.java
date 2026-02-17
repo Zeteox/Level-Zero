@@ -10,20 +10,9 @@ public class Staff extends Weapon {
     // The magic damage dealt by the staff
     private int damage;
     
-    // Staff constructor with damage validation
-    public Staff(String name, int damage, int price) {
-        super(name, "Staff", price, new MagicAttackStrategy(), null);
-        
-        if (damage < 0) {
-            throw new IllegalArgumentException("Damage cannot be negative");
-        }
-        
-        this.damage = damage;
-    }
-    
     // Staff constructor with strategies
     public Staff(String name, int damage, int price, AttackStrategy attackStrategy, DefenseStrategy defenseStrategy) {
-        super(name, "Staff", price, attackStrategy, defenseStrategy);
+        super(name, "Staff", price, attackStrategy != null ? attackStrategy : new MagicAttackStrategy(), defenseStrategy);
         
         if (damage < 0) {
             throw new IllegalArgumentException("Damage cannot be negative");

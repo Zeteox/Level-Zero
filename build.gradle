@@ -1,0 +1,41 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group = 'com.levelzero'
+version = '1.0-SNAPSHOT'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src']
+        }
+    }
+}
+
+application {
+    mainClass = 'com.levelzero.Main'
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'com.levelzero.Main'
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
