@@ -11,6 +11,7 @@ import java.util.ArrayList;
 public class Village {
     private final String name;
     private ArrayList<Building> buildings;
+    private final int level;
 
     /**
      * Constructor for the Village class. It initializes the name of the village and generates the buildings based on his level.
@@ -20,6 +21,7 @@ public class Village {
     public Village(String name, int level) {
         this.name = name;
         this.buildings = new ArrayList<>();
+        this.level = level;
         this.generateVillage(level);
     }
 
@@ -39,6 +41,10 @@ public class Village {
      */
     public String getName() {
         return name;
+    }
+
+    public int getLevel() {
+        return level;
     }
 
     /**
