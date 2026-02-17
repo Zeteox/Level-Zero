@@ -1,11 +1,21 @@
 package com.levelzero;
 
-public class Main {
-    public static void main(String[] args) {
-        System.out.printf("Hello and welcome!");
+import org.jline.terminal.Terminal;
+import org.jline.terminal.TerminalBuilder;
 
-        for (int i = 1; i <= 5; i++) {
-            System.out.println("i = " + i);
-        }
+import java.io.IOException;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        Terminal terminal = TerminalBuilder.builder()
+                .system(true)
+                .build();
+
+        int width = terminal.getWidth();
+        int height = terminal.getHeight();
+
+        System.out.println("Width: " + width);
+        System.out.println("Height: " + height);
+
     }
 }
