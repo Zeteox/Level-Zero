@@ -10,10 +10,12 @@ public class Village {
      */
     private final String name;
     private ArrayList<Building> buildings;
+    private final int level;
 
     public Village(String name, int level) {
         this.name = name;
         this.buildings = new ArrayList<>();
+        this.level = level;
         this.generateVillage(level);
     }
 
@@ -25,6 +27,10 @@ public class Village {
 
     public String getName() {
         return name;
+    }
+
+    public int getLevel() {
+        return level;
     }
 
     public int getBuildingNumber() {
