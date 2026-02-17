@@ -10,20 +10,9 @@ public class Shield extends Weapon {
     // The defence value provided by the shield
     private int defence;
     
-    // Shield constructor with defence validation
-    public Shield(String name, int defence, int price) {
-        super(name, "Shield", price, null, new SimpleDefenseStrategy());
-        
-        if (defence < 0) {
-            throw new IllegalArgumentException("Defence cannot be negative");
-        }
-        
-        this.defence = defence;
-    }
-    
     // Shield constructor with strategies
     public Shield(String name, int defence, int price, AttackStrategy attackStrategy, DefenseStrategy defenseStrategy) {
-        super(name, "Shield", price, attackStrategy, defenseStrategy);
+        super(name, "Shield", price, attackStrategy, defenseStrategy != null ? defenseStrategy : new SimpleDefenseStrategy());
         
         if (defence < 0) {
             throw new IllegalArgumentException("Defence cannot be negative");

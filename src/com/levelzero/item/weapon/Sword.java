@@ -10,20 +10,9 @@ public class Sword extends Weapon {
     // The physical damage dealt by the sword
     private int damage;
     
-    // Sword constructor with damage validation
-    public Sword(String name, int damage, int price) {
-        super(name, "Sword", price, new SimpleAttackStrategy(), null);
-        
-        if (damage < 0) {
-            throw new IllegalArgumentException("Damage cannot be negative");
-        }
-        
-        this.damage = damage;
-    }
-    
     // Sword constructor with strategies
     public Sword(String name, int damage, int price, AttackStrategy attackStrategy, DefenseStrategy defenseStrategy) {
-        super(name, "Sword", price, attackStrategy, defenseStrategy);
+        super(name, "Sword", price, attackStrategy != null ? attackStrategy : new SimpleAttackStrategy(), defenseStrategy);
         
         if (damage < 0) {
             throw new IllegalArgumentException("Damage cannot be negative");
