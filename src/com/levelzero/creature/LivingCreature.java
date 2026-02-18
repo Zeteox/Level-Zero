@@ -108,7 +108,7 @@ public abstract class LivingCreature {
         return this.hp > 0;
     }
 
-    public String attack(LivingCreature target) {
+    public boolean attack(LivingCreature target) {
         if (attackStrategy == null) {
             throw new IllegalStateException("Attack strategy not set");
         }
