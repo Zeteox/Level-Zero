@@ -7,8 +7,9 @@ group = 'com.levelzero'
 version = '1.0-SNAPSHOT'
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_21
-    targetCompatibility = JavaVersion.VERSION_21
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
 }
 
 repositories {
@@ -16,6 +17,7 @@ repositories {
 }
 
 dependencies {
+    implementation 'org.jline:jline:3.25.0'
 }
 
 sourceSets {
@@ -34,8 +36,8 @@ jar {
     manifest {
         attributes 'Main-Class': 'com.levelzero.Main'
     }
-}
-
-test {
-    useJUnitPlatform()
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
 }

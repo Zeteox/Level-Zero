@@ -42,6 +42,13 @@ public class Mine implements Building {
         return this.monsters.isEmpty();
     }
 
+    /**
+     * Calculates the nth Fibonacci number recursively.
+     * Used to determine the number of monsters in a mine based on its level.
+     *
+     * @param n the position in the Fibonacci sequence
+     * @return the Fibonacci number
+     */
     static int fibonacci(int n) {
         if (n <= 1) {
             return n;
@@ -49,7 +56,15 @@ public class Mine implements Building {
         return fibonacci(n - 1) + fibonacci(n - 2);
     }
 
-    private Monster createRandomMonster(int level, int index) {
+    /**
+     * Creates a randomly generated monster with stats scaled to the specified level.
+     * The monster's HP, gold, damage, and defense are randomized within level-appropriate ranges.
+     *
+     * @param level the level of the monster (affects all stats)
+     * @param index the index/number of this monster in the mine
+     * @return a newly created Monster instance with random stats
+     */
+    public static Monster createRandomMonster(int level, int index) {
         Random rnd = new Random();
 
         String name = "Monster L" + level + " #" + index;
@@ -63,16 +78,11 @@ public class Mine implements Building {
         SimpleHealStrategy healStrategy = new SimpleHealStrategy();
         SimpleDefenseStrategy defenseStrategy = new SimpleDefenseStrategy();
 
-        Sword sword = null;
-        Shield shield = null;
-        if (rnd.nextDouble() < Math.min(0.5, 0.1 * level)) {
-            int damage = 1 + level * 2 + rnd.nextInt(level + 1);
-            sword = WeaponFactory.createSword("Monster Sword L" + level, damage, damage * 10);
-        }
-        if (rnd.nextDouble() < Math.min(0.5, 0.1 * level)) {
-            int defense = 1 + level + rnd.nextInt(level + 1);
-            shield = WeaponFactory.createShield("Monster Shield L" + level, defense, defense * 10);
-        }
+        int damage = 5 + level + rnd.nextInt(level + 1);
+        Sword sword = WeaponFactory.createSword("Monster Sword L" + level, damage, level * 2);
+
+        int defense = 1 + rnd.nextInt(level + 1);
+        Shield shield = WeaponFactory.createShield("Monster Shield L" + level, defense, level * 2);
 
         return new Monster(name, maxHp, gold, baseDamage, baseDefense, attackStrategy, healStrategy, defenseStrategy, sword, shield);
     }
