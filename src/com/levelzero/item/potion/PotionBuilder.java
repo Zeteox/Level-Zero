@@ -1,6 +1,9 @@
 package com.levelzero.item.potion;
 
-// Builder pattern for fluent Potion construction
+/**
+ * A builder class for constructing Potion objects. 
+ * This class allows setting the name, effect and price of the potion.
+ */
 public class PotionBuilder {
     
     private String name;

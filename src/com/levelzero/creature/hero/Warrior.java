@@ -26,6 +26,13 @@ public class Warrior extends Hero implements HaveBonus {
         return super.getDamage() + damageBoost;
     }
 
+    /**
+     * Overrides the equip method to ensure that Warriors can only equip Swords.
+     * If a non-Sword weapon is attempted to be equipped, a message is returned indicating the failure.
+     * Otherwise, it calls the superclass's equip method to handle the equipping process.
+     * @param weapon the weapon to equip
+     * @return a boolean
+     */
     @Override
     public boolean equip(Weapon weapon) {
         if (!(weapon instanceof Sword)) {

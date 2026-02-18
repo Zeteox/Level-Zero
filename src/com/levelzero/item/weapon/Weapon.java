@@ -4,17 +4,26 @@ import com.levelzero.item.AbstractItem;
 import com.levelzero.creature.attack.AttackStrategy;
 import com.levelzero.creature.defense.DefenseStrategy;
 
-// Abstract class representing a weapon in the game
+/**
+ * Abstract base class for all weapons in the game. 
+ * It defines common properties and methods for weapons, such as type, attack and defense strategies.
+ * Concrete weapon types (Shield, Sword, Staff) will extend this class and implement certain behavior.
+ */
 public abstract class Weapon extends AbstractItem {
     
-    // Weapon type (e.g., "Sword", "Shield", "Staff")
     private final String type;
     
-    // Attack and Defense strategies
     protected AttackStrategy attackStrategy;
     protected DefenseStrategy defenseStrategy;
     
-    // Weapon constructor with parameter validation
+    /**
+     * Constructor for creating a weapon with the specified name, type, price, attack strategy and defense strategy.
+     * @param name the name of the weapon
+     * @param type the type of the weapon ("Shield", "Sword", "Staff")
+     * @param price the price of the weapon
+     * @param attackStrategy the attack strategy of the weapon
+     * @param defenseStrategy the defense strategy of the weapon
+     */
     public Weapon(String name, String type, int price, AttackStrategy attackStrategy, DefenseStrategy defenseStrategy) {
         super(name, price);
         
@@ -27,18 +36,14 @@ public abstract class Weapon extends AbstractItem {
         this.defenseStrategy = defenseStrategy;
     }
     
-    // Returns the weapon damage
     public abstract int getDamage();
     
-    // Returns the weapon defence
     public abstract int getDefense();
     
-    // Returns the weapon type
     public String getType() {
         return type;
     }
     
-    // Returns the weapon statistics as a formatted string
     public String getStats() {
         return String.format("Weapon: %s, Type: %s, Price: %d, Damage: %d, Defence: %d",
                 name, type, price, getDamage(), getDefense());
@@ -54,7 +59,6 @@ public abstract class Weapon extends AbstractItem {
         return getStats();
     }
     
-    // Attack Strategy getters and setters
     public AttackStrategy getAttackStrategy() {
         return attackStrategy;
     }
@@ -63,7 +67,6 @@ public abstract class Weapon extends AbstractItem {
         this.attackStrategy = attackStrategy;
     }
     
-    // Defense Strategy getters and setters
     public DefenseStrategy getDefenseStrategy() {
         return defenseStrategy;
     }

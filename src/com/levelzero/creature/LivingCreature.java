@@ -30,22 +30,39 @@ public abstract class LivingCreature {
         setHealStrategy(healStrategy);
         setDefenseStrategy(defenseStrategy);
     }
-
+  
+    /**
+     * Check if the creature is alive (HP > 0).
+     * @return boolean, true if the creature is alive, false otherwise
+     */
     public boolean isAlive() {
         return this.hp > 0;
     }
+
     public void healHp(int heal) {
         if (healStrategy == null) {
             throw new IllegalStateException("Heal strategy not set");
         }
         healStrategy.healHp(this, heal);
     }
+
+    /**
+     * Attack the target creature using the current attack strategy.
+     * @param target the LivingCreature to attack
+     * @return boolean, true if the function worked or false otherwise
+     */
     public boolean attack(LivingCreature target) {
         if (attackStrategy == null) {
             throw new IllegalStateException("Attack strategy not set");
         }
         return attackStrategy.attack(this, target);
     }
+
+    /**
+     * Remove HP from the creature with applying defense.
+     * This method is used for normal attack.
+     * @param damage the amount of HP to remove
+     */
     public void removeHp(int damage) {
         if (defenseStrategy == null) {
             throw new IllegalStateException("Defense strategy not set");
@@ -53,6 +70,12 @@ public abstract class LivingCreature {
         int damageTaken = defenseStrategy.defend(damage, this);
         setHp(this.hp - damageTaken);
     }
+
+    /**
+     * Removes HP from the creature without applying defense.
+     * This method is used for magic attacks that bypass defense.
+     * @param damage the amount of HP to remove
+     */
     public void removeMagicHp(int damage) {
         setHp(this.hp - damage);
     }
