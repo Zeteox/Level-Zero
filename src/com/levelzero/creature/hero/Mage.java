@@ -17,7 +17,7 @@ public class Mage extends Hero implements CanDodge {
     }
 
     @Override
-    public int getBonus() {
+    public int getDodgeChance() {
         return dodgeChance;
     }
 

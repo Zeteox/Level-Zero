@@ -20,8 +20,6 @@ public abstract class Hero extends LivingCreature {
         this.offHand = null;
     }
 
-    public abstract int getBonus();
-
     public Inventory getInventory() {
         return inventory;
     }

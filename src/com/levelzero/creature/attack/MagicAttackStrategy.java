@@ -15,7 +15,7 @@ public class MagicAttackStrategy implements AttackStrategy {
         }
         if (target instanceof CanDodge) {
             int dodgeNumber = (int) (Math.random() * 100) + 1;
-            if (dodgeNumber <= ((CanDodge) target).getBonus()) {
+            if (dodgeNumber <= ((CanDodge) target).getDodgeChance()) {
                 return target.getName() + " dodged the attack!";
             }
         }
