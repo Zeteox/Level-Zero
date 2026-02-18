@@ -49,7 +49,7 @@ public class Mine implements Building {
         return fibonacci(n - 1) + fibonacci(n - 2);
     }
 
-    private Monster createRandomMonster(int level, int index) {
+    public static Monster createRandomMonster(int level, int index) {
         Random rnd = new Random();
 
         String name = "Monster L" + level + " #" + index;
