@@ -6,7 +6,7 @@ import com.levelzero.creature.heal.SimpleHealStrategy;
 import com.levelzero.item.weapon.Weapon;
 import com.levelzero.item.weapon.Staff;
 
-public class Mage extends Hero implements CanDodge {
+public class Mage extends Hero implements HaveDodgeChance {
     private final int dodgeChance;
 
     public Mage(String name, int maxHp, int gold, int damage, int defense, int space, int dodgeChance) {
