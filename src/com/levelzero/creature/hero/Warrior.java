@@ -27,23 +27,9 @@ public class Warrior extends Hero implements HaveBonus {
     }
 
     @Override
-    public String getStats() {
-        String weaponName = (getMainHand() != null) ? getMainHand().getName() : "None";
-
-        return "Name: " + getName() +
-                "\nClass: Warrior" +
-                "\nHP: " + getHp() + "/" + getMaxHp() +
-                "\nGold: " + getGold() +
-                "\nDamage: " + getDamage() +
-                "\nDefense: " + getDefense() +
-                "\nDamage Boost:  +" + this.damageBoost +
-                "\nMain Hand: " + weaponName;
-    }
-
-    @Override
-    public String equip(Weapon weapon) {
+    public boolean equip(Weapon weapon) {
         if (!(weapon instanceof Sword)) {
-            return String.format("%s cannot equip %s. Warriors can only equip Swords.", getName(), weapon.getName());
+            return false;
         }
         return super.equip(weapon);
     }
