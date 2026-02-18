@@ -4,13 +4,23 @@ import com.levelzero.creature.attack.AttackStrategy;
 import com.levelzero.creature.attack.SimpleAttackStrategy;
 import com.levelzero.creature.defense.DefenseStrategy;
 
-// Represents a sword, an offensive weapon dealing physical damage
+/**
+ * A class representing a sword weapon in the game. 
+ * Swords are physical weapons that deal physical damage and provide no defense.
+ */
 public class Sword extends Weapon {
     
-    // The physical damage dealt by the sword
     private int damage;
     
-    // Sword constructor with strategies
+   /**
+    * Constructs a new Sword with the specified name, damage, price, attack strategy and defense strategy. 
+    * If the strategy is null the default is set to SimpleAttackStrategy.
+    * @param name the name of the sword.
+    * @param damage the damage of the sword. 
+    * @param price the price of the sword.
+    * @param attackStrategy the attack strategy of the sword.
+    * @param defenseStrategy the defense strategy of the sword.
+    */
     public Sword(String name, int damage, int price, AttackStrategy attackStrategy, DefenseStrategy defenseStrategy) {
         super(name, "Sword", price, attackStrategy != null ? attackStrategy : new SimpleAttackStrategy(), defenseStrategy);
         
@@ -21,19 +31,16 @@ public class Sword extends Weapon {
         this.damage = damage;
     }
     
-    // Returns the sword damage
     @Override
     public int getDamage() {
         return damage;
     }
     
-    // Swords provide no defence
     @Override
     public int getDefense() {
         return 0;
     }
     
-    // Returns the sword statistics
     @Override
     public String getStats() {
         return String.format("%s (Sword) - Damage: %d, Price: %d", name, damage, price);

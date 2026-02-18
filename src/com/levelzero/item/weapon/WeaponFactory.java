@@ -4,17 +4,26 @@ import com.levelzero.creature.attack.MagicAttackStrategy;
 import com.levelzero.creature.attack.SimpleAttackStrategy;
 import com.levelzero.creature.defense.SimpleDefenseStrategy;
 
-// Factory to create different weapons in the game
+/**
+ * A factory class for creating different types of weapons with their strategies. 
+ * This class provides methods to create shields, swords and staffs with default or custom strategies.
+ */
 public class WeaponFactory {
     
-    // Available weapon types
     public enum WeaponType {
         SHIELD,
         SWORD,
         STAFF
     }
     
-    // Creates a weapon with strategies based on the specified type
+    /**
+     * Creates a weapon of the specified type with the given name, stat and price.
+     * @param type the type of weapon to create
+     * @param name the name of the weapon
+     * @param stat the stat of the weapon
+     * @param price the price of the weapon
+     * @return
+     */
     public static Weapon createWeapon(WeaponType type, String name, int stat, int price) {
         if (type == null) {
             throw new IllegalArgumentException("Weapon type cannot be null");
@@ -32,17 +41,14 @@ public class WeaponFactory {
         }
     }
     
-    // Creates a shield with strategies
     public static Shield createShield(String name, int defense, int price) {
         return new Shield(name, defense, price, null, new SimpleDefenseStrategy());
     }
     
-    // Creates a sword with strategies
     public static Sword createSword(String name, int damage, int price) {
         return new Sword(name, damage, price, new SimpleAttackStrategy(), null);
     }
     
-    // Creates a magic staff with strategies
     public static Staff createStaff(String name, int damage, int price) {
         return new Staff(name, damage, price, new MagicAttackStrategy(), null);
     }
