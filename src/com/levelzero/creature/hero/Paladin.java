@@ -15,31 +15,16 @@ public class Paladin extends Hero {
                 space);
     }
 
-    @Override
-    public String getStats() {
-        String mainHandName = (getMainHand() != null) ? getMainHand().getName() : "None";
-        String offHandName = (getOffHand() != null) ? getOffHand().getName() : "None";
-
-        return "Name: " + getName() +
-                "\nClass: Paladin" +
-                "\nHP: " + getHp() + "/" + getMaxHp() +
-                "\nGold: " + getGold() +
-                "\nDamage: " + getDamage() +
-                "\nDefense: " + getDefense() +
-                "\nMain Hand: " + mainHandName +
-                "\nOff Hand: " + offHandName;
-    }
-
     /**
      * Overrides the equip method to ensure that Paladins can only equip Swords and Shields.
      * If an invalid weapon type is attempted to be equipped, a message is returned indicating the failure.
      * @param weapon the weapon to equip
-     * @return a message describing the action performed
+     * @return a boolean
      */
     @Override
-    public String equip(Weapon weapon) {
+    public boolean equip(Weapon weapon) {
         if (!(weapon instanceof Shield) && !(weapon instanceof Sword)) {
-            return String.format("%s cannot equip %s. Paladins can only equip Swords and Shields.", getName(), weapon.getName());
+            return false;
         }
         return super.equip(weapon);
     }

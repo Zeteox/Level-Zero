@@ -26,30 +26,16 @@ public class Mage extends Hero implements HaveDodgeChance {
         return (super.getDamage() + 10);
     }
 
-    @Override
-    public String getStats() {
-        String staffName = (getMainHand() != null) ? getMainHand().getName() : "None";
-
-        return "Name: " + getName() +
-                "\nClass: Mage" +
-                "\nHP: " + getHp() + "/" + getMaxHp() +
-                "\nGold: " + getGold() +
-                "\nMagic Damage: " + getDamage() +
-                "\nDefense: " + getDefense() +
-                "\nDodge Chance: " + this.dodgeChance + "%" +
-                "\nMain Hand: " + staffName;
-    }
-
     /**
      * Overrides the equip method to ensure that Mages can only equip Staffs.
      * If a non-Staff weapon is attempted to be equipped, a message is returned indicating the failure.
      * @param weapon the weapon to equip
-     * @return a message describing the action performed
+     * @return a boolean
      */
     @Override
-    public String equip(Weapon weapon) {
+    public boolean equip(Weapon weapon) {
         if (!(weapon instanceof Staff)) {
-            return String.format("%s cannot equip %s. Mages can only equip Staffs.", getName(), weapon.getName());
+            return false;
         }
         return super.equip(weapon);
     }

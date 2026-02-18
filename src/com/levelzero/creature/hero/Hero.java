@@ -26,66 +26,47 @@ public abstract class Hero extends LivingCreature {
      * @param weapon the weapon to equip in off-hand
      * @return a message describing the action performed
      */
-    private String equipOffHand(Weapon weapon) {
-        String message;
-        if (offHand == null) {
-            message = String.format("%s has equipped %s in off-hand.", getName(), weapon.getName());
-        } else {
+    private void equipOffHand(Weapon weapon) {
+        if (offHand != null) {
             inventory.addWeapon(offHand);
-            message = String.format("%s has unequipped %s from off-hand and equipped %s.", getName(), offHand.getName(), weapon.getName());
         }
         this.offHand = weapon;
         inventory.removeWeapon(weapon);
         setDefenseStrategy(weapon.getDefenseStrategy());
-        return message;
     }
 
     /**
      * Equip a weapon in the main-hand slot.
      * If a weapon is already equipped, it will be unequipped and returned to inventory.
      * @param weapon the weapon to equip in main-hand
-     * @return a message describing the action performed
      */
-    private String equipMainHand(Weapon weapon) {
-        String message;
-        if (mainHand == null) {
-            message = String.format("%s has equipped %s in main-hand.", getName(), weapon.getName());
-        } else {
+    private void equipMainHand(Weapon weapon) {
+        if (mainHand != null) {
             inventory.addWeapon(mainHand);
-            message = String.format("%s has unequipped %s from main-hand and equipped %s.", getName(), mainHand.getName(), weapon.getName());
         }
-
         this.mainHand = weapon;
         inventory.removeWeapon(weapon);
         setAttackStrategy(weapon.getAttackStrategy());
-        return message;
     }
 
     /**
      * Equip a weapon from the inventory.
      * Shields are equipped in the off-hand, other weapons in the main-hand.
      * @param weapon the weapon to equip
-     * @return a message describing the action performed
+     * @return a boolean
      */
-    public String equip(Weapon weapon) {
+    public boolean equip(Weapon weapon) {
         if (!inventory.contains(weapon)) {
-            return String.format("%s does not have %s in inventory.", getName(), weapon.getName());
+            return false;
         }
 
         if (weapon instanceof Shield) {
-            return equipOffHand(weapon);
+            equipOffHand(weapon);
+            return true;
         } else {
-            return equipMainHand(weapon);
+            equipMainHand(weapon);
+            return true;
         }
-    }
-
-    /**
-     * Make the hero say something.
-     * @param message the message to say
-     * @return a formatted string with the hero's name and message
-     */
-    public String talk(String message) {
-        return String.format("%s says: %s", getName(), message);
     }
 
     /**

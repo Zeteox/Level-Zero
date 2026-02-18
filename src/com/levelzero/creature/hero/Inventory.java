@@ -34,51 +34,46 @@ public class Inventory implements Iterable<Item> {
     /**
      * Adds an item to the inventory if there is space available.
      * @param item the item to add
-     * @return
+     * @return a boolan
      */
-    public String addItem(Item item) {
+    public boolean addItem(Item item) {
         if (item == null) {
             throw new IllegalArgumentException("Item cannot be null");
         }
         
         if (items.size() >= capacity) {
-            return "Inventory full. Cannot add " + item.getName();
+            return false;
         }
         
         items.add(item);
-        return item.getName() + " added to inventory";
+        return true;
     }
     
-    public String addPotion(Potion potion) {
+    public boolean addPotion(Potion potion) {
         return addItem(potion);
     }
     
-    public String addWeapon(Weapon weapon) {
+    public boolean addWeapon(Weapon weapon) {
         return addItem(weapon);
     }
     
     /**
      * Removes an item from the inventory.
      * @param item the item to remove
-     * @return
+     * @return a boolean
      */
-    public String removeItem(Item item) {
+    public boolean removeItem(Item item) {
         if (item == null) {
-            return "Invalid item";
+            return false;
         }
-        
-        if (items.remove(item)) {
-            return item.getName() + " removed from inventory";
-        }
-        
-        return item.getName() + " not found in inventory";
+        return items.remove(item);
     }
     
-    public String removePotion(Potion potion) {
+    public boolean removePotion(Potion potion) {
         return removeItem(potion);
     }
     
-    public String removeWeapon(Weapon weapon) {
+    public boolean removeWeapon(Weapon weapon) {
         return removeItem(weapon);
     }
     

@@ -69,16 +69,6 @@ public class Merchant implements Building {
     }
 
     /**
-     * Method to show the available weapons for sale.
-     */
-    public void showWeapons() {
-        System.out.println("Weapons available for sale:");
-        for (Weapon weapon : weaponStock) {
-            System.out.println(weapon.getName());
-        }
-    }
-
-    /**
      * Getter method for the potion stock of the merchant.
      * @return the potion stock of the merchant
      */
@@ -100,15 +90,5 @@ public class Merchant implements Building {
      */
     public void removePotion(Potion potion) {
         this.potionStock.remove(potion);
-    }
-
-    /**
-     * Method to show the available potions for sale.
-     */
-    public void showPotions() {
-        System.out.println("Potions available for sale:");
-        for (Potion potion : potionStock) {
-            System.out.println(potion.getName());
-        }
     }
 }

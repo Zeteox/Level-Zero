@@ -30,9 +30,7 @@ public abstract class LivingCreature {
         setHealStrategy(healStrategy);
         setDefenseStrategy(defenseStrategy);
     }
-
-    public abstract String getStats();
-
+  
     /**
      * Check if the creature is alive (HP > 0).
      * @return boolean, true if the creature is alive, false otherwise

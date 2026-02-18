@@ -19,21 +19,6 @@ public class Monster extends LivingCreature {
     }
 
     @Override
-    public String getStats() {
-        String swordName = sword != null ? sword.getName() : "None";
-        String shieldName = shield != null ? shield.getName() : "None";
-
-        return "Name: " + getName() +
-                "\nClass: Monster" +
-                "\nHP: " + getHp() + "/" + getMaxHp() +
-                "\nGold: " + getGold() +
-                "\nDamage: " + getDamage() +
-                "\nDefense: " + getDefense() +
-                "\nSword: " + swordName +
-                "\nShield: " + shieldName;
-    }
-
-    @Override
     public int getDamage() {
         return baseDamage + (sword != null ? sword.getDamage() : 0);
     }
