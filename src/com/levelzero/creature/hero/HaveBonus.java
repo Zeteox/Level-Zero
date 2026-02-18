@@ -1,5 +1,5 @@
 package com.levelzero.creature.hero;
 
-public interface CanDodge {
+public interface HaveBonus {
     int getBonus();
 }

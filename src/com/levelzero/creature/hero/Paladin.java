@@ -16,11 +16,6 @@ public class Paladin extends Hero {
     }
 
     @Override
-    public int getBonus() {
-        return 0;
-    }
-
-    @Override
     public String getStats() {
         String mainHandName = (getMainHand() != null) ? getMainHand().getName() : "None";
         String offHandName = (getOffHand() != null) ? getOffHand().getName() : "None";

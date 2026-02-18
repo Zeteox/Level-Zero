@@ -6,7 +6,7 @@ import com.levelzero.creature.heal.SimpleHealStrategy;
 import com.levelzero.item.weapon.Weapon;
 import com.levelzero.item.weapon.Sword;
 
-public class Warrior extends Hero {
+public class Warrior extends Hero implements HaveBonus {
     private final int damageBoost;
 
     public Warrior(String name, int maxHp, int gold, int damage, int defense, int space, int damageBoost) {

@@ -20,49 +20,42 @@ public abstract class Hero extends LivingCreature {
         this.offHand = null;
     }
 
-    public abstract int getBonus();
-
-    public Inventory getInventory() {
-        return inventory;
-    }
-
-    public Weapon getMainHand() {
-        return mainHand;
-    }
-
-    public Weapon getOffHand() {
-        return offHand;
-    }
-
-    private void equipOffHand(Weapon weapon) {
-        if (offHand != null) {
+    private String equipOffHand(Weapon weapon) {
+        String message;
+        if (offHand == null) {
+            message = String.format("%s has equipped %s in off-hand.", getName(), weapon.getName());
+        } else {
             inventory.addWeapon(offHand);
+            message = String.format("%s has unequipped %s from off-hand and equipped %s.", getName(), offHand.getName(), weapon.getName());
         }
-
         this.offHand = weapon;
         inventory.removeWeapon(weapon);
         setDefenseStrategy(weapon.getDefenseStrategy());
+        return message;
     }
-
-    private void equipMainHand(Weapon weapon) {
-        if (mainHand != null) {
+    private String equipMainHand(Weapon weapon) {
+        String message;
+        if (mainHand == null) {
+            message = String.format("%s has equipped %s in main-hand.", getName(), weapon.getName());
+        } else {
             inventory.addWeapon(mainHand);
+            message = String.format("%s has unequipped %s from main-hand and equipped %s.", getName(), mainHand.getName(), weapon.getName());
         }
 
         this.mainHand = weapon;
         inventory.removeWeapon(weapon);
         setAttackStrategy(weapon.getAttackStrategy());
+        return message;
     }
-
-    public void equip(Weapon weapon) {
+    public String equip(Weapon weapon) {
         if (!inventory.contains(weapon)) {
-            throw new IllegalArgumentException("Weapon must be in inventory to equip.");
+            return String.format("%s does not have %s in inventory.", getName(), weapon.getName());
         }
 
         if (weapon instanceof Shield) {
-            equipOffHand(weapon);
+            return equipOffHand(weapon);
         } else {
-            equipMainHand(weapon);
+            return equipMainHand(weapon);
         }
     }
 
@@ -81,6 +74,16 @@ public abstract class Hero extends LivingCreature {
 
         potion.use(this);
         inventory.removePotion(potion);
+    }
+
+    public Inventory getInventory() {
+        return inventory;
+    }
+    public Weapon getMainHand() {
+        return mainHand;
+    }
+    public Weapon getOffHand() {
+        return offHand;
     }
 
     @Override
