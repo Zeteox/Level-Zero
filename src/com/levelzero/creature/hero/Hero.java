@@ -34,45 +34,35 @@ public abstract class Hero extends LivingCreature {
         return offHand;
     }
 
-    private String equipOffHand(Weapon weapon) {
-        String message;
-        if (offHand == null) {
-            message = String.format("%s has equipped %s in off-hand.", getName(), weapon.getName());
-        } else {
+    private void equipOffHand(Weapon weapon) {
+        if (offHand != null) {
             inventory.addWeapon(offHand);
-            message = String.format("%s has unequipped %s from off-hand and equipped %s.", getName(), offHand.getName(), weapon.getName());
         }
 
         this.offHand = weapon;
         inventory.removeWeapon(weapon);
         setDefenseStrategy(weapon.getDefenseStrategy());
-        return message;
     }
 
-    private String equipMainHand(Weapon weapon) {
-        String message;
-        if (mainHand == null) {
-            message = String.format("%s has equipped %s in main-hand.", getName(), weapon.getName());
-        } else {
+    private void equipMainHand(Weapon weapon) {
+        if (mainHand != null) {
             inventory.addWeapon(mainHand);
-            message = String.format("%s has unequipped %s from main-hand and equipped %s.", getName(), mainHand.getName(), weapon.getName());
         }
 
         this.mainHand = weapon;
         inventory.removeWeapon(weapon);
         setAttackStrategy(weapon.getAttackStrategy());
-        return message;
     }
 
-    public String equip(Weapon weapon) {
+    public void equip(Weapon weapon) {
         if (!inventory.contains(weapon)) {
-            return String.format("%s does not have %s in inventory.", getName(), weapon.getName());
+            throw new IllegalArgumentException("Weapon must be in inventory to equip.");
         }
 
         if (weapon instanceof Shield) {
-            return equipOffHand(weapon);
+            equipOffHand(weapon);
         } else {
-            return equipMainHand(weapon);
+            equipMainHand(weapon);
         }
     }
 

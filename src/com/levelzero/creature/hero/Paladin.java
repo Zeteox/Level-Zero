@@ -36,10 +36,10 @@ public class Paladin extends Hero {
     }
 
     @Override
-    public String equip(Weapon weapon) {
+    public void equip(Weapon weapon) {
         if (!(weapon instanceof Shield) && !(weapon instanceof Sword)) {
-            return String.format("%s cannot equip %s. Paladins can only equip Swords and Shields.", getName(), weapon.getName());
+            throw new IllegalArgumentException("Paladins can only equip Swords and Shields.");
         }
-        return super.equip(weapon);
+        super.equip(weapon);
     }
 }

@@ -41,10 +41,10 @@ public class Mage extends Hero implements CanDodge {
     }
 
     @Override
-    public String equip(Weapon weapon) {
+    public void equip(Weapon weapon) {
         if (!(weapon instanceof Staff)) {
-            return String.format("%s cannot equip %s. Mages can only equip Staffs.", getName(), weapon.getName());
+            throw new IllegalArgumentException("Mages can only equip Staffs.");
         }
-        return super.equip(weapon);
+        super.equip(weapon);
     }
 }

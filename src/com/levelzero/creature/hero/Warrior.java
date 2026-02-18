@@ -41,10 +41,10 @@ public class Warrior extends Hero {
     }
 
     @Override
-    public String equip(Weapon weapon) {
+    public void equip(Weapon weapon) {
         if (!(weapon instanceof Sword)) {
-            return String.format("%s cannot equip %s. Warriors can only equip Swords.", getName(), weapon.getName());
+            throw new IllegalArgumentException("Warriors can only equip Swords.");
         }
-        return super.equip(weapon);
+        super.equip(weapon);
     }
 }
