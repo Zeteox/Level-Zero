@@ -1,8 +1,15 @@
 package com.levelzero.item.potion;
 
-// Factory pattern for predefined potion creation
+/**
+ * A factory class for creating different types of potions in the game. 
+ * This class provides methods to create small, medium and large health potions,
+ */
 public class PotionFactory {
     
+    /**
+     * Creates a small health potion that heal 25 health points and costs 10 gold.
+     * @return a new small health potion
+     */
     public static Potion createSmallPotion() {
         return new PotionBuilder()
             .withName("Small Health Potion")
@@ -11,6 +18,10 @@ public class PotionFactory {
             .build();
     }
     
+    /**
+     * Creates a medium health potion that heal 50 health points and costs 25 gold.
+     * @return a new medium health potion
+     */
     public static Potion createMediumPotion() {
         return new PotionBuilder()
             .withName("Medium Health Potion")
@@ -19,6 +30,10 @@ public class PotionFactory {
             .build();
     }
     
+    /**
+     * Creates a large health potion that heal 100 health points and costs 50 gold.
+     * @return a new large health potion
+     */
     public static Potion createLargePotion() {
         return new PotionBuilder()
             .withName("Large Health Potion")

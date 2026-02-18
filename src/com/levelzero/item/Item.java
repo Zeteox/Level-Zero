@@ -1,14 +1,14 @@
 package com.levelzero.item;
 
-// Defines the contract for all items in the game
+/**
+ * An interface representing an item in the game. 
+ * This can be implemented by various types of items, such as weapons, armor and potions.
+ */
 public interface Item {
     
-    // Returns the item name
     String getName();
     
-    // Returns the item price
     int getPrice();
     
-    // Returns a description of the item
     String getDescription();
 }

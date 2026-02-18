@@ -3,12 +3,21 @@ package com.levelzero.item.potion;
 import com.levelzero.item.AbstractItem;
 import com.levelzero.creature.LivingCreature;
 
-// Represents a consumable potion with effect strategy
+/**
+ * Represents a potion item that can be used by the player.
+ * A potion has a name, an effect and a price.
+ * The effect is defined by the PotionEffect interface, allowing for different types of potions for scalability.
+ */
 public class Potion extends AbstractItem {
     
     private final PotionEffect effect;
     
-    // Constructor with effect strategy
+    /**
+     * Constructs a new Potion with the specified name, effect and price.
+     * @param name the name of the potion
+     * @param effect the effect of the potion 
+     * @param price the price of the potion
+     */
     public Potion(String name, PotionEffect effect, int price) {
         super(name, price);
         
@@ -19,7 +28,6 @@ public class Potion extends AbstractItem {
         this.effect = effect;
     }
     
-    // Apply potion effect to target
     public void use(LivingCreature target) {
         if (target != null) {
             effect.apply(target);

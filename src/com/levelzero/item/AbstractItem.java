@@ -1,12 +1,19 @@
 package com.levelzero.item;
 
-// Base class for all items, providing common functionality
+/**
+ * An abstract base class for items in the game. 
+ * This class provides common properties and methods for all items, such as name and price.
+ */
 public abstract class AbstractItem implements Item {
     
     protected final String name;
     protected final int price;
     
-    // Constructor with parameter validation
+    /**
+     * Creates a new AbstractItem with the specified name and price.
+     * @param name the name of the item 
+     * @param price the price of the item
+     */
     public AbstractItem(String name, int price) {
         if (name == null || name.trim().isEmpty()) {
             throw new IllegalArgumentException("Item name cannot be empty");
@@ -19,19 +26,16 @@ public abstract class AbstractItem implements Item {
         this.price = price;
     }
     
-    // Returns the item name
     @Override
     public String getName() {
         return name;
     }
     
-    // Returns the item price
     @Override
     public int getPrice() {
         return price;
     }
     
-    // Returns a description of the item
     @Override
     public abstract String getDescription();
 }
