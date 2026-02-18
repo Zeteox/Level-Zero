@@ -47,13 +47,6 @@ public class Merchant implements Building {
         this.weaponStock.remove(weapon);
     }
 
-    public void showWeapons() {
-        System.out.println("Weapons available for sale:");
-        for (Weapon weapon : weaponStock) {
-            System.out.println(weapon.getName());
-        }
-    }
-
     public ArrayList<Potion> getPotions() {
         return potionStock;
     }
@@ -64,12 +57,5 @@ public class Merchant implements Building {
 
     public void removePotion(Potion potion) {
         this.potionStock.remove(potion);
-    }
-
-    public void showPotions() {
-        System.out.println("Potions available for sale:");
-        for (Potion potion : potionStock) {
-            System.out.println(potion.getName());
-        }
     }
 }

@@ -17,30 +17,30 @@ public class TradeUtils {
         return instance;
     }
 
-    public void buyItem(Hero hero, Merchant merchant, Weapon weapon) {
+    public boolean buyItem(Hero hero, Merchant merchant, Weapon weapon) {
         /**
          * Implement the logic to buy a weapon from the merchant
          */
         if (hero.getGold() - weapon.getPrice() < 0) {
-            System.out.println("You don't have enough money to buy that!");
-            return;
+            return false;
         }
         merchant.removeWeapon(weapon);
         hero.getInventory().addWeapon(weapon);
         hero.setGold(hero.getGold() - weapon.getPrice());
+        return true;
     }
 
-    public void buyItem(Hero hero, Merchant merchant, Potion potion) {
+    public boolean buyItem(Hero hero, Merchant merchant, Potion potion) {
         /**
          * Implement the logic to buy a potion from the merchant
          */
         if (hero.getGold() - potion.getPrice() < 0) {
-            System.out.println("You don't have enough money to buy that!");
-            return;
+            return false;
         }
         merchant.removePotion(potion);
         hero.getInventory().addPotion(potion);
         hero.setGold(hero.getGold() - potion.getPrice());
+        return true;
     }
 
     public void sellItem(Hero hero, Merchant merchant, Weapon weapon) {
