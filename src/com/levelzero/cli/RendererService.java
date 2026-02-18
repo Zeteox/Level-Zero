@@ -4,23 +4,19 @@ import java.io.IOException;
 
 public class RendererService {
 
-    public static String[] drawBox(String[] lines, int width) {
+    public static String[] drawBox(int width, int height) {
         int innerWidth = width - 2;
-        String[] box = new String[lines.length + 2];
+        int innerHeight = height - 2;
+        String[] box = new String[height];
 
         box[0] = "┌" + "─".repeat(innerWidth) + "┐";
-
-        for (int i = 0; i < lines.length; i++) {
-            String line = lines[i];
-            String formattedLine = line.length() > innerWidth
-                    ? line.substring(0, innerWidth)
-                    : String.format("%-" + innerWidth + "s", line);
-            box[i + 1] = "│" + formattedLine + "│";
+        for (int i = 1; i < height - 1; i++) {
+            box[i] = "│" + " ".repeat(innerWidth) + "│";
         }
-
-        box[box.length - 1] = "└" + "─".repeat(innerWidth) + "┘";
+        box[height - 1] = "└" + "─".repeat(innerWidth) + "┘";
         return box;
     }
+
 
     public static String drawProgressBar(float value, float maxValue, int barLength) {
         int percentage = Math.min(100, Math.max(0, (int) ((value / maxValue) * 100)));
@@ -41,7 +37,7 @@ public class RendererService {
         }
 
         lines[lines.length - 1] = "";
-        return drawBox(lines, 26);
+        return lines;
     }
 
     public static void renderTerminalTooSmallWarning(int termWidth, int termHeight, int minWidth, int minHeight) {
@@ -70,7 +66,7 @@ public class RendererService {
         }
     }
 
-    private static void clearScreen() {
+    static void clearScreen() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }
