@@ -20,18 +20,6 @@ public abstract class Hero extends LivingCreature {
         this.offHand = null;
     }
 
-    public Inventory getInventory() {
-        return inventory;
-    }
-
-    public Weapon getMainHand() {
-        return mainHand;
-    }
-
-    public Weapon getOffHand() {
-        return offHand;
-    }
-
     private String equipOffHand(Weapon weapon) {
         String message;
         if (offHand == null) {
@@ -40,13 +28,11 @@ public abstract class Hero extends LivingCreature {
             inventory.addWeapon(offHand);
             message = String.format("%s has unequipped %s from off-hand and equipped %s.", getName(), offHand.getName(), weapon.getName());
         }
-
         this.offHand = weapon;
         inventory.removeWeapon(weapon);
         setDefenseStrategy(weapon.getDefenseStrategy());
         return message;
     }
-
     private String equipMainHand(Weapon weapon) {
         String message;
         if (mainHand == null) {
@@ -61,7 +47,6 @@ public abstract class Hero extends LivingCreature {
         setAttackStrategy(weapon.getAttackStrategy());
         return message;
     }
-
     public String equip(Weapon weapon) {
         if (!inventory.contains(weapon)) {
             return String.format("%s does not have %s in inventory.", getName(), weapon.getName());
@@ -89,6 +74,16 @@ public abstract class Hero extends LivingCreature {
 
         potion.use(this);
         inventory.removePotion(potion);
+    }
+
+    public Inventory getInventory() {
+        return inventory;
+    }
+    public Weapon getMainHand() {
+        return mainHand;
+    }
+    public Weapon getOffHand() {
+        return offHand;
     }
 
     @Override

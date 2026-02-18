@@ -31,6 +31,34 @@ public abstract class LivingCreature {
         setDefenseStrategy(defenseStrategy);
     }
 
+    public abstract String getStats();
+
+    public boolean isAlive() {
+        return this.hp > 0;
+    }
+    public void healHp(int heal) {
+        if (healStrategy == null) {
+            throw new IllegalStateException("Heal strategy not set");
+        }
+        healStrategy.healHp(this, heal);
+    }
+    public boolean attack(LivingCreature target) {
+        if (attackStrategy == null) {
+            throw new IllegalStateException("Attack strategy not set");
+        }
+        return attackStrategy.attack(this, target);
+    }
+    public void removeHp(int damage) {
+        if (defenseStrategy == null) {
+            throw new IllegalStateException("Defense strategy not set");
+        }
+        int damageTaken = defenseStrategy.defend(damage, this);
+        setHp(this.hp - damageTaken);
+    }
+    public void removeMagicHp(int damage) {
+        setHp(this.hp - damage);
+    }
+
     public String getName() {
         return name;
     }
@@ -72,18 +100,10 @@ public abstract class LivingCreature {
     public void setHp(int hp) {
         if (hp < 0) {
             this.hp = 0;
-        } else if (hp > this.maxHp) {
-            this.hp = this.maxHp;
-        } else {
-            this.hp = hp;
-        }
+        } else this.hp = Math.min(hp, this.maxHp);
     }
     public void setGold(int gold) {
-        if (gold < 0) {
-            this.gold = 0;
-        } else {
-            this.gold = gold;
-        }
+        this.gold = Math.max(gold, 0);
     }
     public void setAttackStrategy(AttackStrategy attackStrategy) {
         if (attackStrategy == null) {
@@ -103,36 +123,4 @@ public abstract class LivingCreature {
         }
         this.defenseStrategy = defenseStrategy;
     }
-
-    public boolean isAlive() {
-        return this.hp > 0;
-    }
-
-    public boolean attack(LivingCreature target) {
-        if (attackStrategy == null) {
-            throw new IllegalStateException("Attack strategy not set");
-        }
-        return attackStrategy.attack(this, target);
-    }
-
-    public void removeHp(int damage) {
-        if (defenseStrategy == null) {
-            throw new IllegalStateException("Defense strategy not set");
-        }
-        int damageTaken = defenseStrategy.defend(damage, this);
-        setHp(this.hp - damageTaken);
-    }
-
-    public void removeMagicHp(int damage) {
-        setHp(this.hp - damage);
-    }
-
-    public void healHp(int heal) {
-        if (healStrategy == null) {
-            throw new IllegalStateException("Heal strategy not set");
-        }
-        healStrategy.healHp(this, heal);
-    }
-
-    public abstract String getStats();
 }
