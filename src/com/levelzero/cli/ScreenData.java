@@ -72,8 +72,13 @@ public class ScreenData {
             for (int x = 0; x < width; x++) {
                 line.append(getChar(x, y));
             }
-            System.out.println(line);
+            if (y < height - 1) {
+                System.out.println(line);
+            } else {
+                System.out.print(line);
+            }
         }
+        System.out.flush();
     }
 
     public int getHeight() {
