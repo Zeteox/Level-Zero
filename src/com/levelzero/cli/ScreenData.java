@@ -13,11 +13,10 @@ public class ScreenData {
         clear();
     }
 
-    public static ScreenData getInstance(int height, int width) {
+    public static void createInstance(int height, int width) {
         if (instance == null) {
             instance = new ScreenData(height, width);
         }
-        return instance;
     }
 
     public static ScreenData getInstance() {
@@ -55,6 +54,18 @@ public class ScreenData {
         clear();
     }
 
+    public void setString(int x, int y, String str) {
+        for (int i = 0; i < str.length(); i++) {
+            setChar(x + i, y, str.charAt(i));
+        }
+    }
+
+    public void setStringList(int x, int y, String[] lines) {
+        for (int i = 0; i < lines.length; i++) {
+            setString(x, y + i, lines[i]);
+        }
+    }
+
     public void render() {
         for (int y = 0; y < height; y++) {
             StringBuilder line = new StringBuilder();
@@ -63,5 +74,13 @@ public class ScreenData {
             }
             System.out.println(line);
         }
+    }
+
+    public int getHeight() {
+        return height;
+    }
+    
+    public int getWidth() {
+        return width;
     }
 }
