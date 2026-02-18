@@ -42,6 +42,13 @@ public class Mine implements Building {
         return this.monsters.isEmpty();
     }
 
+    /**
+     * Calculates the nth Fibonacci number recursively.
+     * Used to determine the number of monsters in a mine based on its level.
+     *
+     * @param n the position in the Fibonacci sequence
+     * @return the Fibonacci number
+     */
     static int fibonacci(int n) {
         if (n <= 1) {
             return n;
@@ -49,6 +56,14 @@ public class Mine implements Building {
         return fibonacci(n - 1) + fibonacci(n - 2);
     }
 
+    /**
+     * Creates a randomly generated monster with stats scaled to the specified level.
+     * The monster's HP, gold, damage, and defense are randomized within level-appropriate ranges.
+     *
+     * @param level the level of the monster (affects all stats)
+     * @param index the index/number of this monster in the mine
+     * @return a newly created Monster instance with random stats
+     */
     public static Monster createRandomMonster(int level, int index) {
         Random rnd = new Random();
 
