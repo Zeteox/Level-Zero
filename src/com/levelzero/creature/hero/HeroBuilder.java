@@ -38,12 +38,26 @@ public class HeroBuilder {
         return this;
     }
 
+    /**
+     * Builds and returns a Warrior instance with the configured attributes.
+     * @return a new Warrior hero
+     */
     public Warrior buildWarrior() {
         return new Warrior(name, maxHp, gold, damage, defense, inventorySpace, bonus);
     }
+
+    /**
+     * Builds and returns a Mage instance with the configured attributes.
+     * @return a new Mage hero
+     */
     public Mage buildMage() {
         return new Mage(name, maxHp, gold, damage, defense, inventorySpace, bonus);
     }
+
+    /**
+     * Builds and returns a Paladin instance with the configured attributes.
+     * @return a new Paladin hero
+     */
     public Paladin buildPaladin() {
         return new Paladin(name, maxHp, gold, damage, defense, inventorySpace);
     }

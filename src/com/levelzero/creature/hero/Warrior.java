@@ -40,6 +40,13 @@ public class Warrior extends Hero implements HaveBonus {
                 "\nMain Hand: " + weaponName;
     }
 
+    /**
+     * Overrides the equip method to ensure that Warriors can only equip Swords.
+     * If a non-Sword weapon is attempted to be equipped, a message is returned indicating the failure.
+     * Otherwise, it calls the superclass's equip method to handle the equipping process.
+     * @param weapon the weapon to equip
+     * @return a message describing the action performed
+     */
     @Override
     public String equip(Weapon weapon) {
         if (!(weapon instanceof Sword)) {

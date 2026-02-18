@@ -20,6 +20,12 @@ public abstract class Hero extends LivingCreature {
         this.offHand = null;
     }
 
+    /**
+     * Equip a weapon in the off-hand slot.
+     * If a weapon is already equipped, it will be unequipped and returned to inventory.
+     * @param weapon the weapon to equip in off-hand
+     * @return a message describing the action performed
+     */
     private String equipOffHand(Weapon weapon) {
         String message;
         if (offHand == null) {
@@ -33,6 +39,13 @@ public abstract class Hero extends LivingCreature {
         setDefenseStrategy(weapon.getDefenseStrategy());
         return message;
     }
+
+    /**
+     * Equip a weapon in the main-hand slot.
+     * If a weapon is already equipped, it will be unequipped and returned to inventory.
+     * @param weapon the weapon to equip in main-hand
+     * @return a message describing the action performed
+     */
     private String equipMainHand(Weapon weapon) {
         String message;
         if (mainHand == null) {
@@ -47,6 +60,13 @@ public abstract class Hero extends LivingCreature {
         setAttackStrategy(weapon.getAttackStrategy());
         return message;
     }
+
+    /**
+     * Equip a weapon from the inventory.
+     * Shields are equipped in the off-hand, other weapons in the main-hand.
+     * @param weapon the weapon to equip
+     * @return a message describing the action performed
+     */
     public String equip(Weapon weapon) {
         if (!inventory.contains(weapon)) {
             return String.format("%s does not have %s in inventory.", getName(), weapon.getName());
@@ -59,10 +79,21 @@ public abstract class Hero extends LivingCreature {
         }
     }
 
+    /**
+     * Make the hero say something.
+     * @param message the message to say
+     * @return a formatted string with the hero's name and message
+     */
     public String talk(String message) {
         return String.format("%s says: %s", getName(), message);
     }
 
+    /**
+     * Drink a potion from the inventory.
+     * The potion's effect will be applied to the hero and removed from inventory.
+     * @param potion the potion to drink
+     * @throws IllegalArgumentException if the potion is null or not in inventory
+     */
     public void drink(Potion potion) {
         if (potion == null) {
             throw new IllegalArgumentException("Potion cannot be null");

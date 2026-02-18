@@ -40,6 +40,12 @@ public class Mage extends Hero implements HaveDodgeChance {
                 "\nMain Hand: " + staffName;
     }
 
+    /**
+     * Overrides the equip method to ensure that Mages can only equip Staffs.
+     * If a non-Staff weapon is attempted to be equipped, a message is returned indicating the failure.
+     * @param weapon the weapon to equip
+     * @return a message describing the action performed
+     */
     @Override
     public String equip(Weapon weapon) {
         if (!(weapon instanceof Staff)) {

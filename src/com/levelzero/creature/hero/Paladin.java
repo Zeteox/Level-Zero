@@ -30,6 +30,12 @@ public class Paladin extends Hero {
                 "\nOff Hand: " + offHandName;
     }
 
+    /**
+     * Overrides the equip method to ensure that Paladins can only equip Swords and Shields.
+     * If an invalid weapon type is attempted to be equipped, a message is returned indicating the failure.
+     * @param weapon the weapon to equip
+     * @return a message describing the action performed
+     */
     @Override
     public String equip(Weapon weapon) {
         if (!(weapon instanceof Shield) && !(weapon instanceof Sword)) {

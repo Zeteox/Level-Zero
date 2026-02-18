@@ -2,6 +2,14 @@ package com.levelzero.creature.hero;
 
 public class HeroFactory {
 
+    /**
+     * Creates a hero of the specified type with a given name.
+     * Each hero type has predefined stats and abilities.
+     * @param type the type of hero to create
+     * @param name the name of the hero
+     * @return a new Hero instance of the specified type
+     * @throws IllegalArgumentException if the hero type is invalid
+     */
     public static Hero createHero(HeroType type, String name) {
         HeroBuilder builder = new HeroBuilder().setName(name);
         switch (type) {
