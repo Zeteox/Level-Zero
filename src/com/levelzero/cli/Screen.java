@@ -11,7 +11,7 @@ public abstract class Screen {
         width = ScreenData.getInstance().getWidth();
     }
 
-    protected void render() {
+    public void render() {
         ScreenData screenData = ScreenData.getInstance();
         clearScreen();
         screenData.render();

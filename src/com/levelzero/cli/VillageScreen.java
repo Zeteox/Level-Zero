@@ -14,18 +14,19 @@ public class VillageScreen extends Screen {
 
 
     public VillageScreen(Hero hero, Village village, String[] actions, int actionIndex) {
+        super();
         this.hero = hero;
         this.village = village;
         this.actions = actions;
         this.actionIndex = actionIndex;
 
         buildContent();
-        render();
     }
 
     @Override
     public void buildContent() {
         ScreenData screenData = ScreenData.getInstance();
+        screenData.clear();
         String[] box = drawBox(width, height);
         String[] actionsMenu = drawActions(actions, actionIndex);
         String hpBar = drawProgressBar(hero.getHp(), hero.getMaxHp(), 10);
