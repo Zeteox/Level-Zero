@@ -19,10 +19,8 @@ public class Main {
 
         ScreenData.createInstance(height, width);
 
-        // Hero selection
         HeroType selectedHeroType = selectHero(terminal);
 
-        // Exit raw mode to get hero name
         RendererService.clearScreen();
         System.out.print("Enter your hero name: ");
         System.out.flush();
@@ -30,12 +28,12 @@ public class Main {
         NonBlockingReader reader = terminal.reader();
         StringBuilder nameBuilder = new StringBuilder();
         int c;
-        while ((c = reader.read()) != 10 && c != 13) { // Read until Enter
-            if (c >= 32 && c <= 126) { // Printable characters
+        while ((c = reader.read()) != 10 && c != 13) {
+            if (c >= 32 && c <= 126) {
                 nameBuilder.append((char) c);
                 System.out.print((char) c);
                 System.out.flush();
-            } else if (c == 127 || c == 8) { // Backspace
+            } else if (c == 127 || c == 8) {
                 if (nameBuilder.length() > 0) {
                     nameBuilder.deleteCharAt(nameBuilder.length() - 1);
                     System.out.print("\b \b");
@@ -49,7 +47,6 @@ public class Main {
             heroName = "Hero";
         }
 
-        // Start game
         Game game = new Game(terminal);
         game.start(heroName, selectedHeroType);
         game.gameLoop();
@@ -72,11 +69,11 @@ public class Main {
                 return heroTypes[selectedIndex];
             } else if (c == 27) { // ESC sequence
                 int next1 = reader.read();
-                if (next1 == 91) { // [
+                if (next1 == 91) {
                     int next2 = reader.read();
-                    if (next2 == 65) { // A - Up arrow
+                    if (next2 == 65) { // Up arrow
                         selectedIndex = (selectedIndex - 1 + heroTypes.length) % heroTypes.length;
-                    } else if (next2 == 66) { // B - Down arrow
+                    } else if (next2 == 66) { // Down arrow
                         selectedIndex = (selectedIndex + 1) % heroTypes.length;
                     }
                 }

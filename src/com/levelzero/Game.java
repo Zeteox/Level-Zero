@@ -39,6 +39,13 @@ public class Game {
         this.reader = terminal.reader();
     }
 
+    /**
+     * Initializes and starts a new game with the specified hero.
+     * Creates the hero with starting equipment based on hero type and initializes the first village.
+     *
+     * @param heroName the name of the hero
+     * @param heroType the type/class of the hero
+     */
     public void start(String heroName, HeroType heroType) {
         if (heroName == null || heroName.trim().isEmpty()) {
             throw new IllegalArgumentException("Hero name cannot be null or empty");
@@ -95,10 +102,6 @@ public class Game {
         this.currentVillage = currentVillage;
     }
 
-    public boolean isInitialized() {
-        return hero != null && currentVillage != null;
-    }
-
     private KeyAction readKey() throws IOException {
         terminal.enterRawMode();
         int c = reader.read();
@@ -119,6 +122,10 @@ public class Game {
         return KeyAction.UNKNOWN;
     }
 
+    /**
+     * Main game loop that displays the village screen and handles player actions.
+     * Continues indefinitely until the game is exited.
+     */
     public void gameLoop() throws IOException, InterruptedException {
         while (true) {
             int actionIndex = 0;
@@ -155,6 +162,9 @@ public class Game {
         }
     }
 
+    /**
+     * Handles the hostel interaction loop where the player can rest to restore HP.
+     */
     private void hostelLoop() throws IOException {
         Hostel hostel = (Hostel) currentVillage.getHostelBuildings().get(0);
 
@@ -187,6 +197,9 @@ public class Game {
         }
     }
 
+    /**
+     * Handles the merchant interaction loop for buying and selling items.
+     */
     private void merchantLoop() throws IOException {
         Merchant merchant = (Merchant) currentVillage.getMerchantBuildings().get(0);
 
@@ -227,6 +240,11 @@ public class Game {
         }
     }
 
+    /**
+     * Displays the weapon purchase menu and handles weapon buying transactions.
+     *
+     * @param merchant the merchant from whom to buy weapons
+     */
     private void buyWeaponSubMenu(Merchant merchant) throws IOException {
         List<Weapon> weapons = merchant.getWeapons();
         if (weapons.isEmpty()) {
@@ -270,6 +288,11 @@ public class Game {
         }
     }
 
+    /**
+     * Displays the potion purchase menu and handles potion buying transactions.
+     *
+     * @param merchant the merchant from whom to buy potions
+     */
     private void buyPotionSubMenu(Merchant merchant) throws IOException {
         List<Potion> potions = merchant.getPotions();
         if (potions.isEmpty()) {
@@ -312,6 +335,11 @@ public class Game {
         }
     }
 
+    /**
+     * Displays the weapon selling menu and handles weapon selling transactions.
+     *
+     * @param merchant the merchant to whom to sell weapons
+     */
     private void sellWeaponSubMenu(Merchant merchant) throws IOException {
         List<Weapon> weapons = hero.getInventory().getWeapons();
         if (weapons.isEmpty()) {
@@ -355,6 +383,11 @@ public class Game {
         }
     }
 
+    /**
+     * Displays the potion selling menu and handles potion selling transactions.
+     *
+     * @param merchant the merchant to whom to sell potions
+     */
     private void sellPotionSubMenu(Merchant merchant) throws IOException {
         List<Potion> potions = hero.getInventory().getPotions();
         if (potions.isEmpty()) {
@@ -397,6 +430,11 @@ public class Game {
         }
     }
 
+    /**
+     * Handles the mine combat loop where the player fights monsters.
+     * If all monsters are defeated, advances to the next village level.
+     * If the hero dies, displays game over screen and exits.
+     */
     private void mineLoop() throws IOException, InterruptedException {
         Mine mine = (Mine) currentVillage.getMineBuildings().get(0);
         ArrayList<Monster> monsters = mine.getMonsters();
@@ -490,6 +528,13 @@ public class Game {
         }
     }
 
+    /**
+     * Displays the potion selection menu during combat.
+     * Allows the player to choose and drink a potion from their inventory.
+     *
+     * @param monster the current monster being fought
+     * @return true if a potion was drunk, false if the player went back without drinking
+     */
     private boolean drinkPotionSubMenu(Monster monster) throws IOException {
         List<Potion> potions = hero.getInventory().getPotions();
         if (potions.isEmpty()) {
@@ -529,6 +574,9 @@ public class Game {
         }
     }
 
+    /**
+     * Displays the inventory screen where the player can view and equip items.
+     */
     private void inventoryLoop() throws IOException {
         while (true) {
             List<Item> items = hero.getInventory().getAllItems();
@@ -584,5 +632,4 @@ public class Game {
         }
     }
 }
-
 

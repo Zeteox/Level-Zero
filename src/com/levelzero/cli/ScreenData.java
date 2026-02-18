@@ -1,5 +1,9 @@
 package com.levelzero.cli;
 
+/**
+ * Singleton class that manages the screen buffer for CLI rendering.
+ * Provides a character grid for drawing text-based user interfaces.
+ */
 public class ScreenData {
     private static ScreenData instance;
     private int height;
@@ -45,13 +49,6 @@ public class ScreenData {
                 grid[y][x] = ' ';
             }
         }
-    }
-
-    public void resize(int newHeight, int newWidth) {
-        this.height = newHeight;
-        this.width = newWidth;
-        this.grid = new char[newHeight][newWidth];
-        clear();
     }
 
     public void setString(int x, int y, String str) {
