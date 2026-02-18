@@ -31,8 +31,6 @@ public abstract class LivingCreature {
         setDefenseStrategy(defenseStrategy);
     }
 
-    public abstract String getStats();
-
     public boolean isAlive() {
         return this.hp > 0;
     }

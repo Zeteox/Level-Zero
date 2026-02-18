@@ -33,34 +33,28 @@ public abstract class Hero extends LivingCreature {
         setDefenseStrategy(weapon.getDefenseStrategy());
         return message;
     }
-    private String equipMainHand(Weapon weapon) {
+    private void equipMainHand(Weapon weapon) {
         String message;
-        if (mainHand == null) {
-            message = String.format("%s has equipped %s in main-hand.", getName(), weapon.getName());
-        } else {
+        if (mainHand != null) {
             inventory.addWeapon(mainHand);
-            message = String.format("%s has unequipped %s from main-hand and equipped %s.", getName(), mainHand.getName(), weapon.getName());
         }
 
         this.mainHand = weapon;
         inventory.removeWeapon(weapon);
         setAttackStrategy(weapon.getAttackStrategy());
-        return message;
     }
-    public String equip(Weapon weapon) {
+    public boolean equip(Weapon weapon) {
         if (!inventory.contains(weapon)) {
-            return String.format("%s does not have %s in inventory.", getName(), weapon.getName());
+            return false;
         }
 
         if (weapon instanceof Shield) {
-            return equipOffHand(weapon);
+            equipOffHand(weapon);
+            return true;
         } else {
-            return equipMainHand(weapon);
+            equipMainHand(weapon);
+            return true;
         }
-    }
-
-    public String talk(String message) {
-        return String.format("%s says: %s", getName(), message);
     }
 
     public void drink(Potion potion) {
