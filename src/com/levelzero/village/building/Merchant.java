@@ -22,17 +22,13 @@ public class Merchant implements Building {
     }
 
     private void generateStock(int level) {
-        for (int i = 0; i < 3; i++) {
-            this.weaponStock.add(WeaponFactory.createWeapon(WeaponFactory.WeaponType.SWORD, "sword", 3*level, 5*level));
-            this.weaponStock.add(WeaponFactory.createWeapon(WeaponFactory.WeaponType.STAFF, "staff", 3*level, 5*level));
-            this.weaponStock.add(WeaponFactory.createWeapon(WeaponFactory.WeaponType.SHIELD, "shield", level, 5*level));
-        }
+        this.weaponStock.add(WeaponFactory.createWeapon(WeaponFactory.WeaponType.SWORD, "sword", 3*level, 5*level));
+        this.weaponStock.add(WeaponFactory.createWeapon(WeaponFactory.WeaponType.STAFF, "staff", 3*level, 5*level));
+        this.weaponStock.add(WeaponFactory.createWeapon(WeaponFactory.WeaponType.SHIELD, "shield", level, 5*level));
 
-        for (int i = 0; i < 3; i++) {
-            this.potionStock.add(PotionFactory.createSmallPotion());
-            this.potionStock.add(PotionFactory.createMediumPotion());
-            this.potionStock.add(PotionFactory.createLargePotion());
-        }
+        this.potionStock.add(PotionFactory.createSmallPotion());
+        this.potionStock.add(PotionFactory.createMediumPotion());
+        this.potionStock.add(PotionFactory.createLargePotion());
     }
 
     public ArrayList<Weapon> getWeapons() {
