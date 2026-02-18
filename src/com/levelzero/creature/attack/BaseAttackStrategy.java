@@ -19,7 +19,9 @@ public abstract class BaseAttackStrategy implements AttackStrategy {
 
         if (target instanceof HaveDodgeChance) {
             int dodgeNumber = (int) (Math.random() * 100) + 1;
-            return (dodgeNumber <= ((HaveDodgeChance) target).getDodgeChance());
+            if (dodgeNumber <= ((HaveDodgeChance) target).getDodgeChance()) {
+                return false;
+            }
         }
         applyEffect(attacker, target);
         return true;
