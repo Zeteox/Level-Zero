@@ -10,14 +10,19 @@ public class MineScreen extends Screen {
     private final Monster monster;
     private final String message;
     private final int actionIndex;
-    private final String[] actions = {"Attack", "Drink Potion"};
+    private final String[] actions;
 
     public MineScreen(Hero hero, Monster monster, int actionIndex, String message) {
+        this(hero, monster, actionIndex, message, new String[]{"Attack", "Drink Potion"});
+    }
+
+    public MineScreen(Hero hero, Monster monster, int actionIndex, String message, String[] actions) {
         super();
         this.hero = hero;
         this.monster = monster;
         this.actionIndex = actionIndex;
         this.message = message;
+        this.actions = actions;
 
         buildContent();
     }
@@ -34,8 +39,8 @@ public class MineScreen extends Screen {
         String heroHpBar = drawProgressBar(hero.getHp(), hero.getMaxHp(), 15);
         String heroGold = "Gold: " + hero.getGold();
 
-        String heroDmg = "Damage: " + hero.getDamage() + " + " + hero.getMainHand().getDamage();
-        String heroDef = "Defense: " + hero.getDefense() + " + " + hero.getOffHand().getDefense();
+        String heroDmg = "Damage: " + hero.getDamage() + " + " + (hero.getMainHand() != null ? hero.getMainHand().getDamage() : 0);
+        String heroDef = "Defense: " + hero.getDefense() + " + " + (hero.getOffHand() != null ? hero.getOffHand().getDefense() : 0);
 
         screenData.setString(3, 3, heroName);
         screenData.setString(3, 4, heroHpBar);

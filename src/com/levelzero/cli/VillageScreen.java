@@ -31,8 +31,8 @@ public class VillageScreen extends Screen {
         String[] actionsMenu = drawActions(actions, actionIndex);
         String hpBar = drawProgressBar(hero.getHp(), hero.getMaxHp(), 10);
         String goldInfo = "Gold: " + hero.getGold();
-        String damageInfo = "Damage: " + hero.getDamage() + " +  " + hero.getMainHand().getDamage();
-        String defenseInfo = "Defense: " + hero.getDefense() + " +  " + hero.getOffHand().getDefense();
+        String damageInfo = "Damage: " + hero.getDamage() + " + " + (hero.getMainHand() != null ? hero.getMainHand().getDamage() : 0);
+        String defenseInfo = "Defense: " + hero.getDefense() + " + " + (hero.getOffHand() != null ? hero.getOffHand().getDefense() : 0);
         String heroName = "Hero: " + hero.getName();
 
         String locationInfo = "Location: " + village.getName() + " " + village.getLevel();

@@ -63,16 +63,11 @@ public class Mine implements Building {
         SimpleHealStrategy healStrategy = new SimpleHealStrategy();
         SimpleDefenseStrategy defenseStrategy = new SimpleDefenseStrategy();
 
-        Sword sword = null;
-        Shield shield = null;
-        if (rnd.nextDouble() < Math.min(0.5, 0.1 * level)) {
-            int damage = 1 + level * 2 + rnd.nextInt(level + 1);
-            sword = WeaponFactory.createSword("Monster Sword L" + level, damage, damage * 10);
-        }
-        if (rnd.nextDouble() < Math.min(0.5, 0.1 * level)) {
-            int defense = 1 + level + rnd.nextInt(level + 1);
-            shield = WeaponFactory.createShield("Monster Shield L" + level, defense, defense * 10);
-        }
+        int damage = 5 + level + rnd.nextInt(level + 1);
+        Sword sword = WeaponFactory.createSword("Monster Sword L" + level, damage, level * 2);
+
+        int defense = 1 + rnd.nextInt(level + 1);
+        Shield shield = WeaponFactory.createShield("Monster Shield L" + level, defense, level * 2);
 
         return new Monster(name, maxHp, gold, baseDamage, baseDefense, attackStrategy, healStrategy, defenseStrategy, sword, shield);
     }

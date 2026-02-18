@@ -47,15 +47,15 @@ public abstract class Hero extends LivingCreature {
         setAttackStrategy(weapon.getAttackStrategy());
         return message;
     }
-    public String equip(Weapon weapon) {
+    public void equip(Weapon weapon) {
         if (!inventory.contains(weapon)) {
-            return String.format("%s does not have %s in inventory.", getName(), weapon.getName());
+            throw new IllegalArgumentException("Weapon must be in inventory to equip.");
         }
 
         if (weapon instanceof Shield) {
-            return equipOffHand(weapon);
+            equipOffHand(weapon);
         } else {
-            return equipMainHand(weapon);
+            equipMainHand(weapon);
         }
     }
 
